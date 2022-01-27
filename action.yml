@@ -1,10 +1,11 @@
 name: 'ARTIFACT TO UNZIP'
 description: 'Download and Unzip an Node Artifact'
 inputs:
-  folder:  # folder name
-    description: 'Folder Name'
+  production:
+    description: 'Is this a production build?'
+    type: boolean
     required: true
-    default: 'production'
+    default: true
 runs:
   using: "composite"
   steps:
@@ -14,8 +15,8 @@ runs:
   - name: Download a single artifact
     uses: actions/download-artifact@v2
     with:
-      name: ${{ github.event.repository.name }}/${{ inputs.folder }}/${{ steps.package-version.outputs.current-version }}.zip
+      name: ${{ steps.package-version.outputs.current-version }}${{ inputs.production && '' || '-s'}}.zip
   - name: Extract some files
-    run: 7z x ${{ steps.package-version.outputs.current-version }}.zip -aoa
+    run: 7z x ${{ steps.package-version.outputs.current-version }}${{ inputs.production && '' || '-s'}}.zip -aoa
     shell: bash
 
