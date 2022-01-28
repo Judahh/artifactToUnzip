@@ -12,7 +12,7 @@ runs:
     uses: Bhacaz/checkout-files@master
     with:
       files: package.json
-      token: ' '
+      token: ${{ github.token }}
   - name: Download a single artifact
     uses: dawidd6/action-download-artifact@master
     with:
