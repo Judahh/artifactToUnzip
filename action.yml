@@ -8,6 +8,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - name: Download a package
+    uses: Bhacaz/checkout-files@master
+    with:
+      files: package.json
   - name: Download a single artifact
     uses: dawidd6/action-download-artifact@master
     with:
