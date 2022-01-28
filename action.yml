@@ -16,8 +16,6 @@ runs:
     shell: bash
   - name: Download a single artifact
     uses: actions/download-artifact@v2
-    with:
-      name: ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip
   - name: Extract some files
     run: 7z x ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip -aoa
     shell: bash
