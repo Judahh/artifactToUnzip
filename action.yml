@@ -15,7 +15,9 @@ runs:
     run: echo "PROD=$(${{ inputs.production == 'true' }} && echo '' || echo '-s')" >> $GITHUB_ENV
     shell: bash
   - name: Download a single artifact
-    uses: actions/download-artifact@v2
+    uses: dawidd6/action-download-artifact@master
+    with:
+      workflow: ${{ github.event.workflow_run.workflow_id }}
   - name: Extract some files
     run: 7z x ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip -aoa
     shell: bash
