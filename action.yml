@@ -8,16 +8,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - name: Download a single artifact
+    uses: dawidd6/action-download-artifact@master
+    with:
+      workflow: ${{ github.event.workflow_run.workflow_id }}
   - name: GET VERSION
     id: package-version
     uses: martinbeentjes/npm-get-version-action@master
   - name: 'Set Production:'
     run: echo "PROD=$(${{ inputs.production == 'true' }} && echo '' || echo '-s')" >> $GITHUB_ENV
     shell: bash
-  - name: Download a single artifact
-    uses: dawidd6/action-download-artifact@master
-    with:
-      workflow: ${{ github.event.workflow_run.workflow_id }}
   - name: Extract some files
     run: 7z x ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}/${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip -aoa
     shell: bash
