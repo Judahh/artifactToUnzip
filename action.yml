@@ -12,7 +12,7 @@ inputs:
   ignore:
     description: 'Add Ignore?'
     required: true
-    default: '/source\n/src\n'
+    default: '/source\n/src\n/database\n'
 runs:
   using: "composite"
   steps:
