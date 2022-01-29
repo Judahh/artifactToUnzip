@@ -38,4 +38,10 @@ runs:
   - name: Extract some files
     run: 7z x ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}/${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip -aoa
     shell: bash
+  - name: Print end
+    run: ls
+    shell: bash
+  - name: Print ${{ steps.package-version.outputs.current-version }} end
+    run: ls ${{ steps.package-version.outputs.current-version }}
+    shell: bash
 
