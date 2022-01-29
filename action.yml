@@ -16,7 +16,7 @@ runs:
   - name: Download a single artifact
     uses: dawidd6/action-download-artifact@master
     with:
-      workflow: ${{ github.event.workflow_run.workflow_id }}
+      workflow: ${{ github.event.workflow_run.workflow_id || github.run_id }}
   - name: GET VERSION
     id: package-version
     uses: martinbeentjes/npm-get-version-action@master
