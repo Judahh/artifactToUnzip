@@ -10,7 +10,7 @@ inputs:
     required: true
     default: 'true'
   ignore:
-    description: 'Add Ignore?'
+    description: 'Ignore Files'
     required: true
     default: '/source\n/src\n/database\n'
 runs:
