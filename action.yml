@@ -9,6 +9,10 @@ inputs:
     description: 'Add Ignore?'
     required: true
     default: 'true'
+  ignore:
+    description: 'Add Ignore?'
+    required: true
+    default: '/source\n/src\n'
 runs:
   using: "composite"
   steps:
@@ -35,7 +39,7 @@ runs:
       path: ${{ steps.package-version.outputs.current-version }}${{ env.PROD }}/${{ steps.package-version.outputs.current-version }}${{ env.PROD }}.zip
   - name: Add Ignore
     if: ${{ inputs.addIgnore == 'true' }}
-    run: echo '${{ steps.package-version.outputs.current-version }}*' >> .npmignore
+    run: echo -e '${{ steps.package-version.outputs.current-version }}*\n${{ inputs.ignore }}' >> .npmignore
     shell: bash
   - name: Print
     run: ls
