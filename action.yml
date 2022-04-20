@@ -23,7 +23,7 @@ runs:
       token: ${{ github.token }}
   - name: GET VERSION
     id: package-version
-    uses: martinbeentjes/npm-get-version-action@master
+    uses: martinbeentjes/npm-get-version-action@main
   - name: 'Set Production:'
     run: echo "PROD=$(${{ inputs.production == 'true' }} && echo '' || echo '-s')" >> $GITHUB_ENV
     shell: bash
