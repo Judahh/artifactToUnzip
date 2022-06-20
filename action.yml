@@ -13,6 +13,10 @@ inputs:
     description: 'Ignore Files'
     required: true
     default: '/source\n/src\n/database\n'
+  branch:
+    description: 'Branch to checkout files from'
+    required: true
+    default: main
 runs:
   using: "composite"
   steps:
@@ -21,6 +25,7 @@ runs:
     with:
       files: package.json
       token: ${{ github.token }}
+      branch: ${{ inputs.branch }}
   - name: GET VERSION
     id: package-version
     uses: martinbeentjes/npm-get-version-action@main
